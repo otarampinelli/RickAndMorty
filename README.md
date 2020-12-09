@@ -1,2 +1,1 @@
-# sadasd
-Created with CodeSandbox
+# Rick And Morty - API
