@@ -4,6 +4,7 @@ import Axios from "axios";
 
 import Character from "./Characters";
 import Pagination from "./Pagination";
+import Search from "./Search";
 
 // Usando a api https://rickandmortyapi.com/api/character
 // fazer uma requisição e apresentar essas propriedades:
@@ -23,6 +24,8 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
   const [pages, setPages] = useState();
+  const [searchCharacter, setSearchCharacter] = useState("");
+  const [serachResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     Axios.get(`https://rickandmortyapi.com/api/character?page=${count}`).then(
@@ -32,6 +35,13 @@ export default function App() {
       }
     );
   }, [count]);
+
+  useEffect(() => {
+    const results = items.filter((item) => {
+      return item.name.toLowerCase().includes(searchCharacter);
+    });
+    setSearchResults(results);
+  }, [searchCharacter, items]);
 
   const handleIncrement = () => {
     if (count < pages) {
@@ -47,6 +57,27 @@ export default function App() {
 
   return (
     <div>
+      <Search
+        inputType={"text"}
+        buttonType={"submit"}
+        search={searchCharacter}
+        setSearch={setSearchCharacter}
+      />
+      <ul>
+        {serachResults.map((item) => {
+          return (
+            <div className="Container" key={item.id}>
+              <Character
+                names={item.name}
+                status={item.status}
+                species={item.species}
+                gender={item.gender}
+                image={item.image}
+              />
+            </div>
+          );
+        })}
+      </ul>
       {items.length ? (
         items.map((item) => {
           return (
