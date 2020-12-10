@@ -100,3 +100,7 @@ button {
   background: rgb(69, 129, 241);
   cursor: pointer;
 }
+
+.SearchBox {
+  background: white;
+}

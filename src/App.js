@@ -63,23 +63,9 @@ export default function App() {
         search={searchCharacter}
         setSearch={setSearchCharacter}
       />
-      <ul>
-        {serachResults.map((item) => {
-          return (
-            <div className="Container" key={item.id}>
-              <Character
-                names={item.name}
-                status={item.status}
-                species={item.species}
-                gender={item.gender}
-                image={item.image}
-              />
-            </div>
-          );
-        })}
-      </ul>
+
       {items.length ? (
-        items.map((item) => {
+        serachResults.map((item) => {
           return (
             <div className="Container" key={item.id}>
               <Character
