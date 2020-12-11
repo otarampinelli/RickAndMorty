@@ -1,14 +1,6 @@
 import React from "react";
 
-const Characters = ({ names, status, species, gender, image }) => {
-  function getStatus() {
-    if (status === "Alive") {
-      return "StatusIconLive";
-    } else {
-      return "StatusIconUnknow";
-    }
-  }
-
+const Character = ({ image, names, status, species, gender }) => {
   return (
     <article className="CharacterCard">
       <div className="Card">
@@ -33,4 +25,4 @@ const Characters = ({ names, status, species, gender, image }) => {
   );
 };
 
-export default Characters;
+export default Character;

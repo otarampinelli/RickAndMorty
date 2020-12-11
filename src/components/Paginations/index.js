@@ -1,13 +1,9 @@
 import React from "react";
 
-const Pagination = ({ pagination, name }) => {
-  function getPage() {
-    console.log("oi");
-  }
-
+const Paginations = ({ pagination, name }) => {
   return (
     <div>
-      <div className="ButtonContainer">
+      <div>
         <button className="ButtonStatus" onClick={pagination}>
           {name}
         </button>
@@ -16,4 +12,4 @@ const Pagination = ({ pagination, name }) => {
   );
 };
 
-export default Pagination;
+export default Paginations;

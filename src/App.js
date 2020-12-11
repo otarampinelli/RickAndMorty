@@ -2,23 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import Axios from "axios";
 
-import Character from "./Characters";
-import Pagination from "./Pagination";
 import Search from "./Search";
-
-// Usando a api https://rickandmortyapi.com/api/character
-// fazer uma requisição e apresentar essas propriedades:
-// name
-// status
-// species
-// gender
-// image
-
-// Elas vem do objeto e estão dentro da propriedade results uma array com elas.
-// Pode executar essa url no navegador pra ver o que vem.
-// Faz um estilo bonito pra isso trata tudo separado
-// tipo aqui nessa pagina https://rickandmortyapi.com
-// se poddivel cria alguns componentes separados pro codigo não ficar todo em um aquivo.
+import Characters from "./components/Characters";
+import Paginations from "./components/Paginations";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -63,27 +49,14 @@ export default function App() {
         search={searchCharacter}
         setSearch={setSearchCharacter}
       />
-
       {items.length ? (
-        serachResults.map((item) => {
-          return (
-            <div className="Container" key={item.id}>
-              <Character
-                names={item.name}
-                status={item.status}
-                species={item.species}
-                gender={item.gender}
-                image={item.image}
-              />
-            </div>
-          );
-        })
+        <Characters items={items} />
       ) : (
         <div className="App">Loading...</div>
       )}
       <div className="ButtonContainer">
-        <Pagination pagination={handleDecrement} name={"Previous"} />
-        <Pagination pagination={handleIncrement} name={"Next"} />
+        <Paginations pagination={handleDecrement} name={"Previous"} />
+        <Paginations pagination={handleIncrement} name={"Next"} />
       </div>
     </div>
   );
